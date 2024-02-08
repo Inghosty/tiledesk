@@ -7,10 +7,10 @@ services:
    image: tiledesk/tiledesk-dashboard:2.4.92
    container_name: tiledesk-dashboard 
    environment: 
-      - FEATURES_TOKEN: PAY:F-ANA:F-ACT:F-TRI:T-GRO:F-DEP:F-OPH:F-MTL:T-CAR:F-V1L:T-PSA:F-MTT:T-SUP:T-LBS:T-APP:T-DEV:F-NOT:T-IPS:F-ETK:F-RAS:T-PPB:F-PET:F-MTS:F-TIL:T-DGF:T-NAT:T-HPB:F-TOW:T-KNB:F-BAN:F-AST:F-MON:F-CNT:F-AUT:F-WUN:F
+      - FEATURES_TOKEN= PAY:F-ANA:F-ACT:F-TRI:T-GRO:F-DEP:F-OPH:F-MTL:T-CAR:F-V1L:T-PSA:F-MTT:T-SUP:T-LBS:T-APP:T-DEV:F-NOT:T-IPS:F-ETK:F-RAS:T-PPB:F-PET:F-MTS:F-TIL:T-DGF:T-NAT:T-HPB:F-TOW:T-KNB:F-BAN:F-AST:F-MON:F-CNT:F-AUT:F-WUN:F
       - BOT_CREDENTIAL_URL=/api/modules/dialogflow/botcredendials/
       - RASA_BOT_CREDENTIAL_URL=/api/modules/rasa/botcredendials/
-      - "WIDGET_LOCATION=${EXTERNAL_BASE_URL:-http://localhost:8081}/widget/"
+      - WIDGET_LOCATION=${EXTERNAL_BASE_URL:-http://localhost:8081}/widget/
       - SERVER_BASE_URL=/api/
       - CHAT_BASE_URL=/chat/
       - CDS_BASE_URL=/cds/
@@ -32,7 +32,7 @@ services:
       - FIREBASE_MESSAGINGSENDERID
       - FIREBASE_APP_ID
       - FIREBASE_VAPID
-      - "API_BASEIMAGE_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
+      - API_BASEIMAGE_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
       - COMMUNITY_TEMPLATES_URL=/api/modules/templates/public/community
       - TEMPLATES_URL=/api/modules/templates/public/templates
    ports:
@@ -42,9 +42,9 @@ services:
    image: tiledesk/design-studio:1.0.6
    container_name: tiledesk-cds 
    environment: 
-      - FEATURES_TOKEN: PAY:F-ANA:F-ACT:F-TRI:T-GRO:F-DEP:F-OPH:F-MTL:T-CAR:F-V1L:T-PSA:F-MTT:T-SUP:T-LBS:T-APP:T-DEV:F-NOT:T-IPS:F-ETK:F-RAS:T-PPB:F-PET:F-MTS:F-TIL:T-DGF:T-NAT:T-HPB:F-TOW:T-KNB:F-BAN:F-AST:F-MON:F-CNT:F-AUT:F-WUN:F
-      - "WIDGET_LOCATION=${EXTERNAL_BASE_URL:-http://localhost:8081}/widget/"
-      - "API_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
+      - FEATURES_TOKEN= PAY:F-ANA:F-ACT:F-TRI:T-GRO:F-DEP:F-OPH:F-MTL:T-CAR:F-V1L:T-PSA:F-MTT:T-SUP:T-LBS:T-APP:T-DEV:F-NOT:T-IPS:F-ETK:F-RAS:T-PPB:F-PET:F-MTS:F-TIL:T-DGF:T-NAT:T-HPB:F-TOW:T-KNB:F-BAN:F-AST:F-MON:F-CNT:F-AUT:F-WUN:F
+      - WIDGET_LOCATION=${EXTERNAL_BASE_URL:-http://localhost:8081}/widget/
+      - API_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
       - DASHBOARD_URL=/dashboard/
       - WS_URL
       - WS_URL_RELATIVE=/ws/
@@ -61,7 +61,7 @@ services:
       - FIREBASE_APP_ID
       - FIREBASE_VAPID
       - CDS_STORAGE_PREFIX=cds_sv5
-      - "API_BASEIMAGE_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
+      - API_BASEIMAGE_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
    ports:
       - "4502:80" #use expose if you want to block external access
 
@@ -75,9 +75,9 @@ services:
       - MQTT_APPID=tilechat
       - PUSH_ENGINE=none
       - LOG_LEVEL=info
-      - "MQTT_ENDPOINT=${EXTERNAL_MQTT_BASE_URL:-ws://localhost:8081}/mqws/ws"
-      - "MQTT_APIENDPOINT=${EXTERNAL_BASE_URL:-http://localhost:8081}/chatapi/api"      
-      #- MQTT_LOGINSERVICE_ENDPOINT=/api/chat21/native/auth/createCustomToken      
+      - MQTT_ENDPOINT=${EXTERNAL_MQTT_BASE_URL:-ws://localhost:8081}/mqws/ws
+      - MQTT_APIENDPOINT=${EXTERNAL_BASE_URL:-http://localhost:8081}/chatapi/api      
+      - MQTT_LOGINSERVICE_ENDPOINT=/api/chat21/native/auth/createCustomToken      
       - FIREBASE_APIKEY
       - FIREBASE_AUTHDOMAIN
       - FIREBASE_DATABASEURL
@@ -86,9 +86,9 @@ services:
       - FIREBASE_MESSAGINGSENDERID
       - FIREBASE_TENANT=tilechat
       - UPLOAD_ENGINE=native
-      - "API_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
-      - "TRANSLATIONS_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
-      #- API_BASEIMAGE_URL=https://firebasestorage.googleapis.com/v0/b/    For firebase
+      - API_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
+      - TRANSLATIONS_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
+      - API_BASEIMAGE_URL=https://firebasestorage.googleapis.com/v0/b/    For firebase
       - "API_BASEIMAGE_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"   
       - DASHBOARD_URL=/dashboard/   
       - AUTH_PERSISTENCE=LOCAL
@@ -102,17 +102,17 @@ services:
    environment: 
       - DASHBOARD_URL=/dashboard/      
       - API_BASEIMAGE_URL=/api/
-      - "API_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
-      - FEATURES_TOKEN: PAY:F-ANA:F-ACT:F-TRI:T-GRO:F-DEP:F-OPH:F-MTL:T-CAR:F-V1L:T-PSA:F-MTT:T-SUP:T-LBS:T-APP:T-DEV:F-NOT:T-IPS:F-ETK:F-RAS:T-PPB:F-PET:F-MTS:F-TIL:T-DGF:T-NAT:T-HPB:F-TOW:T-KNB:F-BAN:F-AST:F-MON:F-CNT:F-AUT:F-WUN:F
+      - API_URL=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
+      - FEATURES_TOKEN= PAY:F-ANA:F-ACT:F-TRI:T-GRO:F-DEP:F-OPH:F-MTL:T-CAR:F-V1L:T-PSA:F-MTT:T-SUP:T-LBS:T-APP:T-DEV:F-NOT:T-IPS:F-ETK:F-RAS:T-PPB:F-PET:F-MTS:F-TIL:T-DGF:T-NAT:T-HPB:F-TOW:T-KNB:F-BAN:F-AST:F-MON:F-CNT:F-AUT:F-WUN:F
       - WIDGET_LOCATION=/widget/
       - PUSH_ENGINE=none
       - LOG_LEVEL=info
       - FILE_UPLOAD_ACCEPT=*/*
       - CHAT21_ENGINE=mqtt
       - MQTT_APPID=tilechat
-      - "MQTT_ENDPOINT=${EXTERNAL_MQTT_BASE_URL:-ws://localhost:8081}/mqws/ws"
+      - MQTT_ENDPOINT=${EXTERNAL_MQTT_BASE_URL:-ws://localhost:8081}/mqws/ws
       - MQTT_APIENDPOINT=/chatapi/api
-      #- MQTT_LOGINSERVICE_ENDPOINT=/api/chat21/native/auth/createCustomToken
+      - MQTT_LOGINSERVICE_ENDPOINT=/api/chat21/native/auth/createCustomToken
       - UPLOAD_ENGINE=native
       - FIREBASE_APIKEY
       - FIREBASE_AUTHDOMAIN
@@ -165,9 +165,9 @@ services:
       - EMAIL_PORT
       - EMAIL_PASSWORD
       - EMAIL_FROM_ADDRESS
-      - "EMAIL_BASEURL=${EXTERNAL_BASE_URL:-http://localhost:8081}/dashboard"
-      - "WEBHOOK_ORIGIN=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/"
-      - "WIDGET_LOCATION=${EXTERNAL_BASE_URL:-http://localhost:8081}/widget/"
+      - EMAIL_BASEURL=${EXTERNAL_BASE_URL:-http://localhost:8081}/dashboard
+      - WEBHOOK_ORIGIN=${EXTERNAL_BASE_URL:-http://localhost:8081}/api/
+      - WIDGET_LOCATION=${EXTERNAL_BASE_URL:-http://localhost:8081}/widget/
       - WS_SERVER_PATH
       #PLEASE DON'T PASTE THE LICENSE KEY HERE USE .ENV FILE. DOCKER ISSUE WITH /n char
       - LICENSE_KEY
@@ -198,7 +198,7 @@ services:
     restart: always    
     environment: 
       - LOG_LEVEL=info
-      #- AUTO_RESTART=false
+      - AUTO_RESTART=false
       - MONGODB_URI=mongodb://mongo/chat21
       - JWT_KEY=tokenKey
       - RABBITMQ_URI=amqp://ignored:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiMjM1OTFmZS05N2FhLTRmNWQtOGVlOS0yNjQ2NzljYmM0M2YiLCJzdWIiOiIxMDAtQVBJQURNSU4iLCJzY29wZSI6WyJyYWJiaXRtcS5yZWFkOiovKi8qIiwicmFiYml0bXEud3JpdGU6Ki8qLyoiLCJyYWJiaXRtcS5jb25maWd1cmU6Ki8qLyoiXSwiY2xpZW50X2lkIjoiMTAwLUFQSUFETUlOIiwiY2lkIjoiMTAwLUFQSUFETUlOIiwiYXpwIjoiMTAwLUFQSUFETUlOIiwidXNlcl9pZCI6IjEwMC1BUElBRE1JTiIsImFwcF9pZCI6InRpbGVjaGF0IiwiaWF0IjoxNjk2NDkyMjg3LCJleHAiOjIwMDc1MzIyODcsImF1ZCI6WyJyYWJiaXRtcSIsIjEwMC1BUElBRE1JTiJdLCJraWQiOiJ0aWxlZGVzay1rZXkiLCJ0aWxlZGVza19hcGlfcm9sZXMiOiJhZG1pbiJ9.Ee-TpAPsoC7Dm7qsbUojeHud3E4OCtJZkpupu_R0Aic@rabbitmq:5672?heartbeat=60
@@ -223,7 +223,7 @@ services:
     container_name: chat21server
     restart: always
     environment: 
-      #- AUTO_RESTART=false
+      - AUTO_RESTART=false
       - LOG_LEVEL=info
       - MONGODB_URI=mongodb://mongo/chat21
       - APP_ID=tilechat
@@ -270,3 +270,14 @@ services:
   #  command: ngrok http server:3000    
   #  ports:
   #   -  '4040:4040'
+
+  #EXTERNAL_BASE_URL=<your url>
+  #EXTERNAL_MQTT_BASE_URL=<your url>
+  #MONGO_ROOT_USER=root
+  #MONGO_ROOT_PASSWORD=<yourrootpassword>
+  #MONGOEXPRESS_LOGIN=<yourdbuser>
+  #MONGOEXPRESS_PASSWORD=<yourdbuserpass>
+  #RABBITMQ_DEFAULT_PASS=<yourpass>
+  #RABBITMQ_DEFAULT_USER=<youruser>
+  #RABBITMQ_ERLANG_COOKIE=<yourcookie?>
+  
